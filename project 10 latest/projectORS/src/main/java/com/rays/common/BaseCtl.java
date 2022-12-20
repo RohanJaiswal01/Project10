@@ -27,7 +27,7 @@ import com.rays.dto.UserDTO;
 /**
  * Base controller class contains get, search, save, delete REST APIs
  * 
- @author Rohan Jaiswal
+ * @author Rohan Jaiswal
  */
 public abstract class BaseCtl<F extends BaseForm, T extends BaseDTO, S extends BaseServiceInt<T>> {
 
@@ -46,9 +46,7 @@ public abstract class BaseCtl<F extends BaseForm, T extends BaseDTO, S extends B
 	protected static final String OP_GET = "Get";
 
 	@Autowired
-	protected S baseService ;
-	
-	
+	protected S baseService;
 
 	@Value("${page.size}")
 	private int pageSize = 0;
@@ -67,8 +65,8 @@ public abstract class BaseCtl<F extends BaseForm, T extends BaseDTO, S extends B
 	public void setUserContext(HttpSession session) {
 		System.out.println("inside setUserContext --");
 		userContext = (UserContext) session.getAttribute("userContext");
-		if(userContext == null){
-			UserDTO dto  = new UserDTO();
+		if (userContext == null) {
+			UserDTO dto = new UserDTO();
 			dto.setLoginId("root@sunilos.com");
 			dto.setFirstName("demo firstName");
 			dto.setLastName("demo lastName");
@@ -77,7 +75,7 @@ public abstract class BaseCtl<F extends BaseForm, T extends BaseDTO, S extends B
 			dto.setOrgName("root");
 			userContext = new UserContext(dto);
 		}
-	
+
 	}
 
 	/**
@@ -107,7 +105,7 @@ public abstract class BaseCtl<F extends BaseForm, T extends BaseDTO, S extends B
 		if (dto != null) {
 			res.addData(dto);
 		} else {
-		
+
 			res.setSuccess(false);
 			res.addMessage("Record not found");
 		}
@@ -136,42 +134,47 @@ public abstract class BaseCtl<F extends BaseForm, T extends BaseDTO, S extends B
 	}
 
 	@PostMapping("deleteMany/{ids}")
-	public ORSResponse deleteMany(@PathVariable String[] ids, @RequestParam("pageNo") String pageNo,@RequestBody F form) {
+	public ORSResponse deleteMany(@PathVariable String[] ids, @RequestParam("pageNo") String pageNo,
+			@RequestBody F form) {
 		System.out.println("BaseCtl DeleteMany() method run");
 		ORSResponse res = new ORSResponse(true);
-		try {		
-		
-		//	System.out.println("deleteMany Page No is ******---" + pageNo);		
-			
+		try {
+
+			// System.out.println("deleteMany Page No is ******---" + pageNo);
+
 			for (String id : ids) {
 				System.out.println("Records To be Deleted :: " + id);
-				 baseService.delete(Long.parseLong(id), userContext);			
-			
+				baseService.delete(Long.parseLong(id), userContext);
+
 			}
 			T dto = (T) form.getDto();
-	//		System.out.println("dto ::" + dto.getClass());
-			//if(dto!=null)
+			// System.out.println("dto ::" + dto.getClass());
+			// if(dto!=null)
+
+			List<T> list = baseService.search(dto, Integer.parseInt(pageNo), pageSize, userContext);
+
+			List nextlist = baseService.search(dto, Integer.parseInt(pageNo+1), pageSize, userContext);
+
 			
-			List<T> list= baseService.search(dto, Integer.parseInt(pageNo), pageSize, userContext);
-			
-		//	System.out.println("List ::" + list);
-			
+
+			// System.out.println("List ::" + list);
+
 //			for (T id : list) {
 //				System.out.println("Records  :: " + id.toString());				
 //			}
-			
+
 			res.addData(baseService.search(dto, Integer.parseInt(pageNo), pageSize, userContext));
 			res.setSuccess(true);
+			res.addResult("nextlist", nextlist.size());
 			res.addMessage("Records Deleted Successfully");
 			System.out.println("Records Deleted Successfully");
-		
+
 		} catch (Exception e) {
 			res.setSuccess(false);
 			res.addMessage(e.getMessage());
 		}
 		return res;
 	}
-	
 
 	/**
 	 * Search entities by form attributes
@@ -181,7 +184,7 @@ public abstract class BaseCtl<F extends BaseForm, T extends BaseDTO, S extends B
 	 */
 	@RequestMapping(value = "/search", method = { RequestMethod.GET, RequestMethod.POST })
 	public ORSResponse search(@RequestBody F form) {
-		
+
 		System.out.println("BaseCtl Search Running");
 		// Calculate next page number
 		String operation = form.getOperation();
@@ -191,34 +194,45 @@ public abstract class BaseCtl<F extends BaseForm, T extends BaseDTO, S extends B
 			pageNo++;
 		} else if (OP_PREVIOUS.equals(operation)) {
 			pageNo--;
-		}		
+		}
 
 		// 0 is first page index
 		pageNo = (pageNo < 0) ? 0 : pageNo;
 		form.setPageNo(pageNo);
 		System.out.println("Page No is :: " + pageNo + "   Page size is :: " + pageSize);
 		T dto = (T) form.getDto();
-		ORSResponse res = new ORSResponse(true);				
+		ORSResponse res = new ORSResponse(true);
+
 		res.addData(baseService.search(dto, pageNo, pageSize, userContext));
+
+		List<T> nextlist = baseService.search(dto, pageNo + 1, pageSize, userContext);
+		System.out.println(" next list Page No is :: " + pageNo + 1 + "   Page size is :: " + pageSize);
+
+		res.addResult("nextlist", nextlist);
+		System.out.println("size of next list = " + nextlist.size());
+
 		return res;
 	}
 
 	@RequestMapping(value = "/search/{pageNo}", method = { RequestMethod.GET, RequestMethod.POST })
 	public ORSResponse search(@RequestBody F form, @PathVariable int pageNo) {
-		
+
 		/* Called on loading, next, previous and search operation * */
 		System.out.println("BaseCtl Search method with pageNo :: " + pageNo + "   Page size is :: " + pageSize);
-				
+
 		// 0 is first page index
 		pageNo = (pageNo < 0) ? 0 : pageNo;
-		
+
 		System.out.println("Operation :: " + form.getOperation());
 
 		T dto = (T) form.getDto();
 
-		ORSResponse res = new ORSResponse(true);	
+		ORSResponse res = new ORSResponse(true);
 
 		res.addData(baseService.search(dto, pageNo, pageSize, userContext));
+		List nextlist = baseService.search(dto, pageNo + 1, pageSize, userContext);
+
+		res.addResult("nextlist", nextlist.size());
 
 		return res;
 	}
@@ -269,7 +283,7 @@ public abstract class BaseCtl<F extends BaseForm, T extends BaseDTO, S extends B
 			// Lambda expression Java 8 feature
 			list.forEach(e -> {
 				errors.put(e.getField(), e.getDefaultMessage());
-				System.out.println("Field :: " + e.getField() + "  Message :: "  + e.getDefaultMessage());
+				System.out.println("Field :: " + e.getField() + "  Message :: " + e.getDefaultMessage());
 			});
 			res.addInputErrors(errors);
 		}

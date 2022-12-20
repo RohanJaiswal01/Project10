@@ -22,14 +22,25 @@ public class MarksheetCtl extends BaseCtl<MarksheetForm, MarksheetDTO, Marksheet
 
 	@Autowired
 	private StudentServiceInt studentService;
+	@Autowired
+	private MarksheetServiceInt marksheetService;
 
 	@GetMapping("/preload")
 	public ORSResponse preload() {
 		ORSResponse res = new ORSResponse(true);
 		List<StudentDTO> list = studentService.search(new StudentDTO(), userContext);
 		res.addResult("studentList", list);
+		List<MarksheetDTO> list1 = marksheetService.search(new MarksheetDTO(), userContext);
+		res.addResult("marksheetlist", list1);
 		return res;
-	}
+	}  
+//	@GetMapping("/preload")
+//	public ORSResponse preload() {
+//		ORSResponse res = new ORSResponse(true);
+//		List<MarksheetDTO> list = marksheetService.search(new MarksheetDTO(), userContext);
+//		res.addResult("marksheetlist", list);
+//		return res;
+//	}
 
 	@GetMapping("rollno/{rollNo}")
 	public ORSResponse rollNo(@PathVariable String rollNo) {

@@ -35,8 +35,15 @@ public class TimeTableDAOImpl extends BaseDAOImpl<TimeTableDTO> implements TimeT
 		if (!isEmptyString(dto.getCourseName())) {
 
 			whereCondition.add(builder.like(qRoot.get("courseName"), dto.getCourseName() + "%"));
-			System.out.println("subjectName"+ dto.getSubjectName());
+			System.out.println("CourseName"+ dto.getCourseName());
 		}
+		if (!isZeroNumber(dto.getSubjectId())) {
+
+			whereCondition.add(builder.equal(qRoot.get("subjectId"), dto.getSubjectId()));
+			System.out.println("Subjectid"+ dto.getSubjectId());
+
+		}
+
 		
 		System.out.println("wherclause run end");
 		return whereCondition;

@@ -13,7 +13,7 @@ import com.rays.common.BaseDTO;
 
 /**
  * User POJO class. It is persistent object.
- * Author @author Pushpendra Singh Kushwah
+ * Author @author Rohan Jaiswal
  */
 
 @Entity

@@ -4,6 +4,7 @@ import { BaseCtl } from '../base.component';
 import { ServiceLocatorService } from '../service-locator.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
 
 @Component({
@@ -27,11 +28,17 @@ export class UserComponent extends BaseCtl {
     console.log(this.form + "submit running start");
     console.log(this.form.data + "form data going to be submit");
     this.serviceLocator.httpService.post(this.api.save, this.form.data, function (res) {
+      console.log("data submit without image")
       _self.form.message = '';
       _self.form.inputerror = {};
       _self.form.data.id = res.result.data;
-      _self.myFile();
-      if (res.success) {
+      if(_self.fileToUpload){
+        console.log("Data save...in myfile image conditon")
+        _self.myFile();
+      }
+      
+      
+       if (res.success) {
         _self.form.message = "Data is saved";
         _self.form.data.id = res.result.data;
 
@@ -57,6 +64,7 @@ export class UserComponent extends BaseCtl {
       _self.form.inputerror = {};
       _self.form.data.id = res.result.data;
       _self.myFile();
+    
       if (res.success) {
         _self.form.message = "Data is saved";
         _self.form.data.id = res.result.data;
@@ -150,6 +158,7 @@ export class UserComponent extends BaseCtl {
     form.dob = data.dob;
     form.roleId = data.roleId;
     form.status = data.status;
+    form.imageId = data.imageId;
     console.log(form.status + 'status---');
   }
   parseDate(dateString: string): Date {

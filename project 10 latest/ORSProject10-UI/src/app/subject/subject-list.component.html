@@ -7,12 +7,15 @@ background-size: cover;width:auto;
 
     <div class="panel panel-primary">
       <div class="panel-heading" style="height: 50px;">
-        <div class="col-sm-6 p-1">
-          <h4 class="text-primary font-weight-bold">{{'Subject List' | translate}}</h4>
+        <!-- <div class="col-sm-6 p-1"> -->
+          <div class="text-center">
+          <h1 class="text-primary font-weight-bold">{{'Subject List' | translate}}</h1>
         </div>
       </div>
 
       <div class="row p-1">
+        <div class="col-sm-1"></div>
+
         <div class="col-sm-2">
           <input type="text" class="form-control" [(ngModel)]="form.searchParams.subjectName" placeholder="{{'Search Subject' | translate }}">
         </div>
@@ -21,7 +24,8 @@ background-size: cover;width:auto;
         </div>
         
         
-
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1"></div>
         <div class="col-sm-1">
           <button (click)="submit()" class="btn btn-primary">
             {{'Search' | translate}}</button>
@@ -81,7 +85,7 @@ background-size: cover;width:auto;
                 </td>
                 
               </tr>
-              <div class="row p-1">
+              <!-- <div class="row p-1">
                 <div class="col-lg-10">
                     <button (click)="previous()" [disabled]="form.pageNo == 0" class="btn btn-info">{{'Previous' | translate}} </button>
                 </div>
@@ -89,8 +93,24 @@ background-size: cover;width:auto;
                     <button (click)="next()" [disabled]="form.list.length<5" class="btn btn-info">{{'Next' | translate}} </button>
                 </div>
                 </div>
-                
+                 -->
             </tbody>
+            
+          </table>
+          <table style="width: 100%;">
+            <tr>
+              <td style="width: 50%;"><button (click)="previous()" [disabled]="form.pageNo == 0"
+                  class="btn btn-info">{{'Previous' |
+                  translate }} </button>
+              </td>
+              <td style="width: 50%;"><a class="btn btn-warning mr-1" href="/subjectlist">{{'Reset' | translate}}</a>
+              </td>
+
+              <td >
+                <button (click)="next()" [disabled]="nextList == 0" type="button" class="btn btn-info">{{'Next' |
+                  translate }} </button>
+              </td>
+            </tr>
           </table>
         </div>
       </div>

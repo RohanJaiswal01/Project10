@@ -9,8 +9,8 @@ background-size: cover;width:auto;
     <div class="card">
       <div class="card-body shadow-lg">
         <form >
-          <h2 *ngIf="!form.data.id>0" class="text-primary font-weight-bold">{{'Add Role' | translate }}</h2>
-          <h2 *ngIf="form.data.id>0" class="text-primary font-weight-bold">{{'Update Role' | translate }}</h2>
+          <h2 *ngIf="!form.data.id>0" class="text-primary text-center font-weight-bold">{{'Add Role' | translate }}</h2>
+          <h2 *ngIf="form.data.id>0" class="text-primary text-center font-weight-bold">{{'Update Role' | translate }}</h2>
     
 
           <!-- <div *ngIf="form.error" class="alert alert-danger alert-dismissible">
@@ -23,7 +23,7 @@ background-size: cover;width:auto;
           </div>
           <div style="padding-top:3%">
             <span class="pt-2"><b>{{'Name' | translate }}</b>
-              <span class="required-field"></span></span>
+              <span style="color: red;" class="required-field">*</span></span>
 
             <div class="col-sm-12">
               <div class="input-group">
@@ -39,7 +39,7 @@ background-size: cover;width:auto;
         
         <div style="padding-top:3%">
             <span><b>{{'Description' | translate }}</b>
-              <span class="required-field"></span></span>
+              <span style="color: red;" class="required-field">*</span></span>
             <div class="col-sm-12">
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -61,11 +61,12 @@ background-size: cover;width:auto;
                 {{'Update' | translate }}</button>
             </div>
             
-            <div class="pl-3 pt-2">
-              <button (click)="forward('/rolelist')" class="btn btn-md btn-warning">
+            <div class="pl-3 pt-2" >
+              <button style="padding-left: 20%;" (click)="forward('/rolelist')" class="btn btn-md btn-warning">
                 {{'List' | translate }}</button>
             </div>
           </div>
+        
         </form>
       </div>
 

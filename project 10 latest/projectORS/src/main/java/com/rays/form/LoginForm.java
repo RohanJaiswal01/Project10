@@ -8,7 +8,7 @@ import com.rays.common.BaseForm;
 
 /**
  * Contains login form elements and their declarative input validations.
- * @author Pushpendra Singh Kushwah
+ * @author Rohan Jaiswal
  */
 
 public class LoginForm extends BaseForm {

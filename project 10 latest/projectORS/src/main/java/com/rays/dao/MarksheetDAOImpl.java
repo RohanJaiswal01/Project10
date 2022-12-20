@@ -52,6 +52,11 @@ public class MarksheetDAOImpl extends BaseDAOImpl<MarksheetDTO> implements Marks
 
 			whereCondition.add(builder.equal(qRoot.get("studentId"), dto.getStudentId()));
 		}
+		if (!isZeroNumber(dto.getId())) {
+
+			whereCondition.add(builder.equal(qRoot.get("id"), dto.getId()));
+		}
+
 
 		return whereCondition;
 	}

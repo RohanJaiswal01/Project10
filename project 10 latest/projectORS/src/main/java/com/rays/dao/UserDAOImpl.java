@@ -32,10 +32,10 @@ public class UserDAOImpl extends BaseDAOImpl<UserDTO> implements UserDAOInt {
 	}
 
 	@Override
-	protected List<Predicate> getWhereClause(UserDTO dto, CriteriaBuilder builder, Root<UserDTO> qRoot) {
+	protected List getWhereClause(UserDTO dto, CriteriaBuilder builder, Root<UserDTO> qRoot) {
 
 		// Create where conditions
-		List<Predicate> whereCondition = new ArrayList<Predicate>();
+		List whereCondition = new ArrayList();
 
 		if (!isEmptyString(dto.getFirstName())) {
 

@@ -19,7 +19,7 @@ import com.rays.exception.DuplicateRecordException;
  * back.
  * 
  * Default propagation value is Propagation.REQUIRED and readOnly = false
- * @author Pushpendra Singh Kushwah
+ * @author Rohan Jaiswal
  */
 @Service
 @Transactional

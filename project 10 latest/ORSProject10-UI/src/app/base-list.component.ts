@@ -4,12 +4,14 @@ import { HttpServiceService } from './http-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { BaseCtl } from './base.component';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { element } from '@angular/core/src/render3';
 
 export class BaseListCtl extends BaseCtl {  
   
   @ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
   deleteRecordList: any = [];
   isMasterSel:boolean = false ;
+  checkItem= 0;
 
   constructor(public endpoint, public locator: ServiceLocatorService, public route: ActivatedRoute) {
     super(endpoint, locator, route);    
@@ -29,6 +31,7 @@ export class BaseListCtl extends BaseCtl {
   }
 
   submit() {
+    this.form.pageNo=0;
     this.search();
   }
 
@@ -41,7 +44,8 @@ export class BaseListCtl extends BaseCtl {
 
   next() {
     this.form.pageNo++;
-     this.display(); 
+    //  this.display(); 
+    this.search()
    
    
   //  this.isMasterSel = false ;  
@@ -65,6 +69,19 @@ export class BaseListCtl extends BaseCtl {
     this.checkboxes.forEach((element) => {     
         element.nativeElement.checked = checked     
     });   
+  }
+  checklist(){
+    this.checkItem = 0;
+    this.checkboxes.forEach((element) => {
+      if(element.nativeElement.checked){
+        this.checkItem = this.checkItem + 1;
+      }
+    });
+    if(this.checkItem==this.form.list.length){
+      this.isMasterSel = true;
+    }else{
+      this.isMasterSel = false
+    }
   }
 
   

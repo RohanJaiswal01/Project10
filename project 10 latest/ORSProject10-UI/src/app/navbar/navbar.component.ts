@@ -106,7 +106,7 @@ export class NavbarComponent implements OnInit {
 
 
 
-      console.log('After logout jsessionid---' +localStorage.getItem("JSESSIONID") + "  logout Pushpendra Singh Kushwah");
+      console.log('After logout jsessionid---' +localStorage.getItem("JSESSIONID") + "  logout Rohan Jaiswal");
     
 
       

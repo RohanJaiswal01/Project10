@@ -2,26 +2,33 @@
 <div class="content-wrapper" style="padding-top: 3%;padding-bottom: 15%; background-image: url(../../assets/files/gettyimages-1132439283-640x640.jpg); background-repeat: no-repeat;
 background-attachment: fixed;
 background-size: cover;width:auto;
-  height: auto;" >
+  height: auto;">
   <div class="container-fluid">
 
     <div class="panel panel-primary">
       <div class="panel-heading" style="height: 50px;">
-        <div class="col-sm-6 p-1">
-          <h4 class="text-primary font-weight-bold">{{'College List' | translate }}</h4>
+        <!-- <div class="col-sm-6 p-1"> -->
+        <div class="text-center">
+          <h1 class="text-primary font-weight-bold">{{'College List' | translate }}</h1>
         </div>
       </div>
 
       <div class="row p-1">
+        <div class="col-sm-1"></div>
         <div class="col-sm-2">
-          <input type="text" class="form-control" [(ngModel)]="form.searchParams.name" placeholder="{{'Search Name' | translate }}">
+          <input type="text" class="form-control" [(ngModel)]="form.searchParams.name"
+            placeholder="{{'Search Name' | translate }}">
         </div>
+        <!-- <div class="col-sm-2">
+          <input type="text" class="form-control" [(ngModel)]="form.searchParams.city"
+            placeholder="{{'Search City' | translate }}">
+        </div> -->
         <div class="col-sm-2">
-          <input type="text" class="form-control" [(ngModel)]="form.searchParams.city" placeholder="{{'Search City' | translate }}">
+          <input type="text" class="form-control" [(ngModel)]="form.searchParams.phoneNo"
+            placeholder="{{'Search Phone' | translate }}">
         </div>
-        <div class="col-sm-2">
-          <input type="text" class="form-control" [(ngModel)]="form.searchParams.phoneNo" placeholder="{{'Search Phone' | translate }}">
-        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1"></div>  
 
         <div class="col-sm-1">
           <button (click)="submit()" class="btn btn-primary">
@@ -31,13 +38,13 @@ background-size: cover;width:auto;
           <button (click)="forward('/college')" type="button" class="btn btn-success">{{'Add College' | translate }}
           </button>
         </div>
-      
-      <div class="col-sm-1">
-        <button (click)="deleteMany()" class="btn btn-danger">
-          {{'Delete'| translate}}</button>
+
+        <div class="col-sm-1">
+          <button (click)="deleteMany()" class="btn btn-danger">
+            {{'Delete'| translate}}</button>
+        </div>
       </div>
-    </div>
-     
+
       <div *ngIf="form.error" class="alert alert-danger alert-dismissible">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         {{form.message}}
@@ -52,7 +59,8 @@ background-size: cover;width:auto;
           <table class="table table-bordered table-striped table-hover">
             <thead class="thead-light text-uppercase">
               <tr>
-                <th><input type="checkbox" [(ngModel)]="isMasterSel" name="list_name" value="h1" (change)="checkUncheckAll($event)"/></th>
+                <th><input type="checkbox" [(ngModel)]="isMasterSel" name="list_name" value="h1"
+                    (change)="checkUncheckAll($event)" /></th>
                 <th>{{'S.No.' | translate }}</th>
                 <th>{{'Name' | translate }}</th>
                 <th>{{'Address' | translate }}</th>
@@ -64,7 +72,7 @@ background-size: cover;width:auto;
             </thead>
             <tbody>
               <tr *ngFor="let m of form.list; let i = index">
-                <td> <input type="checkbox"  #checkboxes  name="list_name"  id="{{m.id}}" value="{{isMasterSel}}"/>
+                <td> <input type="checkbox" #checkboxes name="list_name" id="{{m.id}}" value="{{isMasterSel}}" />
                 </td>
                 <td> {{(form.pageNo*5)+i+ 1}} </td>
                 <td> {{ m.name }} </td>
@@ -81,18 +89,37 @@ background-size: cover;width:auto;
                     <i class="fa fa-trash text-danger"></i>
                   </a> -->
                 </td>
-                
+
               </tr>
-              <div class="row p-1">
-                <div class="col-lg-10">
+              <!-- <div class="row p-1">
+                <div class="col-lg-5">
                     <button (click)="previous()" [disabled]="form.pageNo == 0" class="btn btn-info">{{'Previous' | translate }} </button>
                 </div>
-                <div class="col-lg-1">
-                    <button (click)="next()" [disabled]="form.list.length<5" class="btn btn-info"> {{'Next' | translate }} </button>
+                <div class="col-lg-5 " >
+                    <button style="margin-left: 90%;" (click)="next()" [disabled]="form.list.length<5" class="btn btn-info"> {{'Next' | translate }} </button>
                 </div>
-                </div>
+                </div> -->
             </tbody>
           </table>
+          <table style="width: 100%;">
+            <tr>
+              <td style="width: 50%;">
+                <button (click)="previous()" [disabled]="form.pageNo == 0" class="btn btn-info"> {{'Previous' |
+                  translate
+                  }} </button>
+              </td>
+              <td style="width: 50%;"><a class="btn btn-warning mr-1" href="/collegelist">{{'Reset' | translate}}</a></td>
+
+
+
+
+              <td ><button (click)="next()" [disabled]="nextList == 0" type="button" class="btn btn-info"> {{'Next'
+                  |
+                  translate }}</button></td>
+            </tr>
+          </table>
+
+
         </div>
       </div>
 

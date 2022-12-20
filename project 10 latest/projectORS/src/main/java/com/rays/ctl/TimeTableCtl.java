@@ -35,7 +35,7 @@ public class TimeTableCtl extends BaseCtl<TimeTableForm, TimeTableDTO, TimeTable
 		System.out.println("preload start");
 	ORSResponse res = new ORSResponse(true);
 	List<CourseDTO> list = courseService.search(new CourseDTO(), userContext);
-	List<SubjectDTO> list1= subjectService.search(new SubjectDTO(), userContext);
+	List<DropdownList> list1= subjectService.search(new SubjectDTO(), userContext);
 	res.addResult("courseList", list);
 	res.addResult("subjectList", list1);
 	System.out.println("preloaad end here --------");

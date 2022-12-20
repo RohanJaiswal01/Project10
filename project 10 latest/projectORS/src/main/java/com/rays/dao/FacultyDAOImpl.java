@@ -41,6 +41,12 @@ public class FacultyDAOImpl extends BaseDAOImpl<FacultyDTO> implements FacultyDA
 
 			whereCondition.add(builder.like(qRoot.get("subjectName"), dto.getSubjectName() + "%"));
 		}
+		if (!isZeroNumber(dto.getSubjectId())) {
+
+			whereCondition.add(builder.equal(qRoot.get("subjectId"), dto.getSubjectId()));
+			System.out.println("Subjectid"+ dto.getSubjectId());
+
+		}
 
 		return whereCondition;
 	}

@@ -6,7 +6,7 @@ import com.rays.dto.UserDTO;
 
 /**
  * User DAO interface.
- * @author Pushpendra Singh Kushwah
+ * @author Rohan Jaiswal
  */
 public interface UserDAOInt extends BaseDAOInt<UserDTO> {
 

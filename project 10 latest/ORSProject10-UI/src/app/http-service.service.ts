@@ -43,6 +43,7 @@ export class HttpServiceService {
     && this.router.url != "/logout" 
     && this.router.url != "/forgotpassword" 
     && this.router.url != "/signup" 
+    && this.router.url != "/login/true"
     )) {
       this.form.message = "Your Session has been Expired! Please Re-Login";
       this.form.error = true;

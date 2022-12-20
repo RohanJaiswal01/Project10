@@ -14,7 +14,7 @@ import com.rays.dto.UserDTO;
 
 /**
  * Contains User form elements and their declarative input validations.
- * @author Pushpendra Singh Kushwah
+ * @author Rohan Jaiswal
  */
 public class UserForm extends BaseForm {
 
@@ -59,7 +59,7 @@ public class UserForm extends BaseForm {
 
 	
 	
-	private String imageId;
+	private Long imageId;
 
 	public String getFirstName() {
 		return firstName;
@@ -157,11 +157,11 @@ public class UserForm extends BaseForm {
 		this.gender = gender;
 	}
 
-	public String getImageId() {
+	public Long getImageId() {
 		return imageId;
 	}
 
-	public void setImageId(String imageId) {
+	public void setImageId(Long imageId) {
 		this.imageId = imageId;
 	}
 
@@ -189,7 +189,7 @@ public class UserForm extends BaseForm {
 		dto.setGender(gender);
 		dto.setPhone(phone);
 		dto.setStatus(status);
-		/* dto.setImageId(imageId); */
+		dto.setImageId(imageId);
 		return dto;
 	}
 	

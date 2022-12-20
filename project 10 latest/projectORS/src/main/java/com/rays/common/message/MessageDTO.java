@@ -14,7 +14,7 @@ import com.rays.common.BaseDTO;
 /**
  * Email/SMS Message class. Message subject and body contains place holders.
  * Place holders defined inside subject/body by defined by {0}, {1}, {3},.. etc.
- * @author Pushpendra Singh Kushwah
+ * @author Rohan Jaiswal
  */
 
 @Entity

@@ -5,7 +5,7 @@ import com.rays.dto.RoleDTO;
 
 /**
  * Role DAO interface.
- * @author Pushpendra Singh Kushwah
+ * @author Rohan Jaiswal
  */
 public interface RoleDAOInt extends BaseDAOInt<RoleDTO> {
 

@@ -45,7 +45,7 @@ import net.sf.jasperreports.engine.JasperReport;
  */
 /**
  * The Class JasperCtl.
- * @author Pushpendra Singh Kushwah
+ * @author Rohan Jaiswal
  */
 
 @Transactional

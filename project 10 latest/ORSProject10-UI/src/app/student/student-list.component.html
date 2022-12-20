@@ -9,7 +9,7 @@ background-size: cover;width:auto;
       <div class="panel-heading" style="height: 50px;">
 
         <div class="text-center">
-          <h2 class="text-success font-weight-bold">{{'Student List' | translate }}</h2>
+          <h2 class="text-primary font-weight-bold">{{'Student List' | translate }}</h2>
 
         </div>
       </div>
@@ -105,10 +105,10 @@ background-size: cover;width:auto;
               <tr> <td style="width: 50%;"><button (click)="previous()" [disabled]="form.pageNo == 0" class="btn btn-info">{{'Previous' |
                     translate }} </button>
                 </td>  
-                <td style="width: 50%;"><a class="btn btn-warning mr-1" href="/studentlist">{{'Back' | translate}}</a></td>
+                <td style="width: 50%;"><a class="btn btn-warning mr-1" href="/studentlist">{{'Reset' | translate}}</a></td>
 
-                <td>
-                  <button (click)="next()" [disabled]="form.list.length<5" type="button" class="btn btn-info">{{'Next' | translate }} </button>
+                <td >
+                  <button (click)="next()" [disabled]="nextList == 0" type="button" class="btn btn-info">{{'Next' | translate }} </button>
                  </td>
                 </tr>
               </table>

@@ -26,6 +26,7 @@ export class GetmarksheetComponent extends BaseCtl{
     searchParams: {}, //search form
     searchMessage: null, //search result message
     list: [], // search list 
+    nextlist: [], // search next list
     pageNo : 0
    
   };

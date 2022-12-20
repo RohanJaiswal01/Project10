@@ -3,7 +3,7 @@ package com.rays.exception;
 /**
  * DatabaseException is propogated by DAO classes when an unhandled Database
  * exception occurred
- * @author Pushpendra Singh Kushwah
+ * @author Rohan Jaiswal
  */
 public class DatabaseException extends RuntimeException {
 

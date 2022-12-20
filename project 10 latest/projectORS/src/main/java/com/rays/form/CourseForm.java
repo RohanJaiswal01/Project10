@@ -1,5 +1,7 @@
 package com.rays.form;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.rays.common.BaseDTO;
 import com.rays.common.BaseForm;
 import com.rays.dto.CollegeDTO;
@@ -8,8 +10,12 @@ import com.rays.dto.CourseDTO;
 public class CourseForm extends BaseForm {
 
 	private long courseId;
+	@NotEmpty(message= "Course name is required")
 	private String courseName;
+	
+	@NotEmpty(message= "Duration is required")
 	private String duration;
+	@NotEmpty(message= "Description is required")
 	private String description;
 	public long getCourseId() {
 		return courseId;

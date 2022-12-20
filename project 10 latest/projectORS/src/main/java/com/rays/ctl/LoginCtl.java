@@ -44,7 +44,7 @@ import com.rays.service.UserServiceInt;
 /**
  * Login controller provides API for Sign Up, Sign In and Forgot password
  * operations
- * @author Pushpendra Singh Kushwah
+ * @author Rohan Jaiswal
  */
 @RestController
 @RequestMapping(value = "Auth")

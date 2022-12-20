@@ -26,7 +26,7 @@ import com.rays.common.ORSResponse;
 
 /**
  * REST API to attach a file in application
- * @author Pushpendra Singh Kushwah
+ * @author Rohan Jaiswal
  *
  */
 public class AttachmentCtl extends BaseCtl<AttachmentForm, AttachmentDTO, AttachmentServiceInt> {

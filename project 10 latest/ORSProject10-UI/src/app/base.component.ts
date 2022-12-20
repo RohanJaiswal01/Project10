@@ -43,10 +43,12 @@ export class BaseCtl implements OnInit {
     inputerror: {}, // form input error messages
     searchParams: {}, //search form
     searchMessage: null, //search result message
-    list: [], // search list 
+    list: [], // search list
     pageNo : 0
     
   };
+
+  nextList = 0;
 
   /**
    * Initialize services 
@@ -121,6 +123,7 @@ export class BaseCtl implements OnInit {
      
       if(res.success){
         _self.form.list = res.result.data;
+        _self.nextList = res.result.nextlist;
         if(_self.form.list.length == 0){
           _self.form.message = "No record found";
           _self.form.error = true;
@@ -144,9 +147,10 @@ export class BaseCtl implements OnInit {
         _self.form.message = null;
         _self.form.error = false;
       }
-      
       if(res.success){
         _self.form.list = res.result.data;
+        _self.nextList = res.result.nextlist;
+
         if(_self.form.list.length == 0){
           _self.form.message = "No record found";
           _self.form.error = true;
@@ -227,6 +231,8 @@ export class BaseCtl implements OnInit {
     this.serviceLocator.httpService.get(_self.api.delete + "/" + id, function (res) {
       if (res.success) {
         _self.form.message = "Data is deleted";
+        _self.nextList = res.result.nextlist;
+
         if(callback){
           console.log('Response Success and now Calling Callback');
         //  callback();  
@@ -244,6 +250,8 @@ export class BaseCtl implements OnInit {
     this.serviceLocator.httpService.post(_self.api.deleteMany + "/" + id,this.form.data, function (res) {
       if (res.success) {
         _self.form.message = "Data is deleted";
+        _self.nextList = res.result.nextlist;
+
         
         if(callback){
           console.log('Response Success and now Calling Callback');

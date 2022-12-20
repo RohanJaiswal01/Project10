@@ -39,6 +39,12 @@ import com.rays.form.UserForm;
 import com.rays.service.RoleServiceInt;
 import com.rays.service.UserServiceInt;
 
+
+/**
+ * User controller provides API for user operations
+ * @author Rohan Jaiswal
+ *
+ */
 @RestController
 @RequestMapping(value = "User")
 public class UserCtl extends BaseCtl<UserForm, UserDTO, UserServiceInt> {

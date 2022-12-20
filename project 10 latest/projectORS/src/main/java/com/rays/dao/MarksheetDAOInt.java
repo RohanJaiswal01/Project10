@@ -7,7 +7,7 @@ import com.rays.dto.MarksheetDTO;
 
 /**
  * Marksheet DAO interface.
- * @author Pushpendra Singh Kushwah
+ * @author Rohan Jaiswal
  */
 public interface MarksheetDAOInt extends BaseDAOInt<MarksheetDTO> {
 
