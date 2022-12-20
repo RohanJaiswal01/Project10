@@ -31,6 +31,7 @@ public class ProjectOrsApplication extends SpringBootServletInitializer{
 	 * Enables CORS to all urls
 	 * 
 	 * @return
+	 * @author Rohan Jaiswal
 	 */
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
@@ -58,19 +59,19 @@ public class ProjectOrsApplication extends SpringBootServletInitializer{
 			
 			
 			
-			/*
-			 * @Override public void addInterceptors(InterceptorRegistry registry) {
-			 * registry.addInterceptor(frontCtl).addPathPatterns("/**").excludePathPatterns(
-			 * "/Auth/**"); }
-			 */
+			
+			 @Override public void addInterceptors(InterceptorRegistry registry) {
+			 registry.addInterceptor(frontCtl).addPathPatterns("/**").excludePathPatterns(
+			 "/Auth/**"); }
+			
 			  
 			  
-			/*
-			 * @Override public void addResourceHandlers(ResourceHandlerRegistry registry) {
-			 * registry.addResourceHandler("/**").addResourceLocations("classpath:/public/")
-			 * ; }
-			 * 
-			 */
+			
+			  @Override public void addResourceHandlers(ResourceHandlerRegistry registry) {
+			  registry.addResourceHandler("/**").addResourceLocations("classpath:/public/")
+			  ; }
+			  
+			 
 			  
 			 
 			 

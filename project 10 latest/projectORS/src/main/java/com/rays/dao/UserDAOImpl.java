@@ -20,7 +20,7 @@ import com.rays.dto.UserDTO;
 /**
  * Contains User CRUD operations
  * 
- * @author @author Pushpendra Singh Kushwah
+ * @author @author Rohan Jaiswal
  *
  */
 @Repository
