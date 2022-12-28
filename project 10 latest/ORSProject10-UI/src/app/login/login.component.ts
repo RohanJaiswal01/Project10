@@ -93,7 +93,8 @@ export class LoginComponent implements OnInit {
   signIn() {
     var _self = this;
     this.form.error = false;
-    const requestedUrl = this.form.loginUrl
+    const requestedUrl = this.httpService.userparams.url
+   // const requesteUrl = this.form.loginUrl
     console.log('signIn----', this.form);
     this.httpService.post(this.endpoint + "/login", this.form, function (res) {
 
