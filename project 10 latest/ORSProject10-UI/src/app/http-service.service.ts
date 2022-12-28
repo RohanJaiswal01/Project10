@@ -47,6 +47,8 @@ export class HttpServiceService {
     )) {
       this.form.message = "Your Session has been Expired! Please Re-Login";
       this.form.error = true;
+      this.userparams.url = this.router.url; // for testing to send url
+
       this.router.navigateByUrl("/login");
   
     return true;
